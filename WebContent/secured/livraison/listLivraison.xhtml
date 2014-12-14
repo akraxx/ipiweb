@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="title">Administration - Gestion des modes de livraison</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row page-header">
+				<div class="col-lg-12 text-left">
+					<h4>Liste des modes de livraison</h4>
+				</div>
+
+			</div>
+		</h:form>
+		<div class="row">
+			<div class="col-lg-12">
+				<f:view>
+					<h:form>
+						<h:dataTable styleClass="table table-hover"
+							value="#{modeLivraisonBean.modesLivraisonModel}" var="ml">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Mode de livraison" /> 
+								</f:facet>
+								<h:outputText value="#{ml.label}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Coût client classique (€)" />
+								</f:facet>
+								<h:inputText id="coutclassique" value="#{ml.coutClassique}"
+									styleClass="form-control" />
+								<h:message for="coutclassique" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Coût client super (€)" />
+								</f:facet>
+								<h:inputText id="coutsuper" value="#{ml.coutSuper}"
+									styleClass="form-control" />
+								<h:message for="coutsuper" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Opérations" />
+								</f:facet>
+								<h:commandLink
+									action="#{modeLivraisonBean.saveModeLivraison}" style="padding-left:5px;"><span class="glyphicon glyphicon-floppy-save"> </span> </h:commandLink>				
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<h:form>
+					<h:commandLink action="#{navigationBean.toListRelai}" styleClass="btn btn-primary">
+						<h:outputText value="Accéder aux relais" />
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

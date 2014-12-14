@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<div class="container">
+		<hr />
+		<footer>
+			<div class="row">
+				<div class="col-lg-10 text-center">
+					<p>Copyright IPIWEB - 2014</p>
+				</div>
+				<div class="col-lg-2 text-right">
+					<h:form>
+						<h:commandLink
+						 action="#{loginBean.logout}" styleClass="btn btn-primary" rendered="#{loginBean.loggedIn}">
+						  <f:verbatim>Se déconnecter</f:verbatim>
+						</h:commandLink>
+					</h:form>
+				</div>
+			</div>
+		</footer>
+	</div>
+</ui:composition>

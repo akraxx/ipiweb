@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="title">Administration - Gestion des droits d'administrateurs</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row page-header">
+				<div class="col-lg-4 text-left">
+					<h4>Liste des articles</h4>
+				</div>
+				<div class="col-lg-4 text-right">
+					<h:selectOneMenu id="search-filter" styleClass="form-control" value="#{articleBean.selectedFilter}" >
+					    <f:selectItems value="#{articleBean.filters}"  var="f"
+	                    	itemLabel="#{f.label}" itemValue="#{f.value}" />
+					</h:selectOneMenu>
+		        </div>
+		        <div class="col-lg-3 text-left">
+		        	<div class="input-group">
+			          <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			          <h:inputText id="search" value="#{articleBean.searchText}"
+												styleClass="form-control" />
+			        </div>
+		        </div>
+		        <div class="col-lg-1 text-left">
+		        		<h:commandLink
+							action="#{articleBean.searchArticle}" style="padding-left:5px;"><span class="glyphicon glyphicon-ok"> </span> </h:commandLink>
+				</div>
+			</div>
+		</h:form>
+		<div class="row">
+			<div class="col-lg-12">
+				<f:view>
+					<h:form>
+						<h:dataTable styleClass="table table-hover"
+							value="#{articleBean.articlesModel}" var="a">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Enseigne" /> 
+								</f:facet>
+								<h:outputText value="#{a.enseigne}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Référence article" />
+								</f:facet>
+								<h:outputText value="#{a.referenceArticle}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Description courte" />
+									<h:commandLink
+										action="#{articleBean.sortByDescription}" style="padding-left:5px;"><span class="glyphicon glyphicon-sort"> </span> </h:commandLink>
+								</f:facet>
+								<h:outputText value="#{a.descriptionCourte}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Prix (€)" />
+									<h:commandLink
+										action="#{articleBean.sortByPrice}" style="padding-left:5px;"><span class="glyphicon glyphicon-sort"> </span> </h:commandLink>
+								</f:facet>
+								<h:outputText value="#{a.prix}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Opérations" />
+								</f:facet>
+								<h:commandLink
+									action="#{articleBean.deleteArticle}" style="padding-left:5px;"><span class="glyphicon glyphicon-trash"> </span> </h:commandLink>
+								<h:commandLink
+									action="#{articleBean.editArticle}" style="padding-left:5px;"><span class="glyphicon glyphicon-edit"> </span> </h:commandLink>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<h:form>
+					<h:commandLink action="#{navigationBean.toAddArticle}" styleClass="btn btn-primary">
+						<h:outputText value="Nouvel article" />
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

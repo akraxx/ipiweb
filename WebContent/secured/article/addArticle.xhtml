@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="title">Administration - Formulaire article</ui:define>
+	<ui:define name="content">
+		<div class="row">
+			<div class="col-lg-12">
+				<h:form styleClass="form-horizontal">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Formulaire article</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-8 col-lg-offset-2">
+									<div class="form-group">
+										<h:outputLabel for="enseigne"
+											styleClass="col-sm-4 control-label">Enseigne</h:outputLabel>
+										<div class="col-sm-8">
+											<h:selectOneMenu id="enseigne" styleClass="form-control" value="#{articleBean.newArticle.enseigne}" >
+											    <f:selectItems value="#{articleBean.enseignes}"
+											    				var="enseigne"
+														        itemValue="#{enseigne}"  />
+											</h:selectOneMenu>
+											<h:message for="enseigne" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="referenceArticle"
+											styleClass="col-sm-4 control-label">Référence article</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText id="referenceArticle" value="#{articleBean.newArticle.referenceArticle}"
+												styleClass="form-control" disabled="true" />
+											<h:message for="referenceArticle" />
+										</div>
+										<div class="col-sm-1 text-left">
+											<h:commandLink
+												action="#{articleBean.generateReferenceNewArticle}" style="padding-top:12px;">
+													<span class="glyphicon glyphicon-refresh"></span>
+											</h:commandLink>
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="description-courte"
+											styleClass="col-sm-4 control-label">Description courte</h:outputLabel>
+										<div class="col-sm-8">
+											<h:inputText id="description-courte" value="#{articleBean.newArticle.descriptionCourte}"
+												styleClass="form-control" />
+											<h:message for="description-courte" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="modele"
+											styleClass="col-sm-4 control-label">Modele</h:outputLabel>
+										<div class="col-sm-8">
+											<h:inputText id="modele" value="#{articleBean.newArticle.modele}"
+												styleClass="form-control" />
+											<h:message for="modele" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="quantite"
+											styleClass="col-sm-4 control-label">Quantite</h:outputLabel>
+										<div class="col-sm-8">
+											<h:inputText id="quantite" value="#{articleBean.newArticle.quantite}"
+												styleClass="form-control" />
+											<h:message for="quantite" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="description-longue"
+											styleClass="col-sm-4 control-label">Description longue</h:outputLabel>
+										<div class="col-sm-8">
+											<h:inputTextarea id="description-longue" value="#{articleBean.newArticle.descriptionLongue}"
+												styleClass="form-control" />
+											<h:message for="description-longue" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-5">
+											<div class="form-group">
+												<h:outputLabel for="prix"
+													styleClass="col-sm-4 control-label">Prix (€)</h:outputLabel>
+												<div class="col-sm-8">
+													<h:inputText id="prix" value="#{articleBean.newArticle.prix}"
+														styleClass="form-control" /> 
+													<h:message for="prix" />
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-7">
+											<div class="form-group">
+												<h:outputLabel for="acces-client"
+													styleClass="col-sm-10 control-label">Accès reservé au super client</h:outputLabel>
+												<div class="col-sm-2">
+													<h:selectBooleanCheckbox id="acces-client" value="#{articleBean.newArticle.superClient}"
+														 />
+													<h:message for="acces-client" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="image"
+											styleClass="col-sm-4 control-label">Image</h:outputLabel>
+										<div class="col-sm-8">
+											<h:inputText id="image" value="#{articleBean.newArticle.image}"
+												styleClass="form-control" />
+											<h:message for="image" />
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="col-sm-offset-5 col-sm-2">
+											<h:commandButton styleClass="btn btn-primary" value="Ajouter"
+												action="#{articleBean.createArticle}" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="title">Administration - Gestion des l'envoi d'un colis</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row page-header">
+				<div class="col-lg-8 text-left">
+					<h4>Liste des commandes</h4>
+				</div>
+		        <div class="col-lg-3 text-left">
+		        	<div class="input-group">
+			          <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			          <h:inputText id="search" value="#{commandeBean.searchText}"
+												styleClass="form-control" />
+			        </div>
+		        </div>
+		        <div class="col-lg-1 text-left">
+		        		<h:commandLink
+							action="#{commandeBean.searchCommande}" style="padding-left:5px;"><span class="glyphicon glyphicon-ok"> </span> </h:commandLink>
+				</div>
+			</div>
+		</h:form>
+		<h:outputText rendered="#{commandeBean.commande == null}" value="Aucune commande trouvée, réessayez." />
+		<h:form rendered="#{commandeBean.commande != null}">
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="row">
+						<div class="col-lg-3">
+							<b>Coordonnées Client</b>
+						</div>
+						<div class="col-lg-9" style="border: 1px solid black; padding: 5px;">
+							<pre>
+								<h:outputText value="#{commandeBean.commande.user.lastname} " /> <h:outputText value="#{commandeBean.commande.user.forname}" /> <br />
+								<h:outputText value="#{commandeBean.commande.user.adresse.numeroRue}" /><br />
+								<h:outputText value="#{commandeBean.commande.user.adresse.complement}" /><br />
+								<h:outputText value="#{commandeBean.commande.user.adresse.codePostal} " /><h:outputText value="#{commandeBean.commande.user.adresse.ville}" />
+							</pre>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<b>Articles</b>
+						</div>
+						<div class="col-lg-9" style="border: 1px solid black; padding: 5px; height: 150px; overflow: auto;">
+							<h:dataTable styleClass="table table-hover"
+								value="#{commandeBean.lignesCommandes}" var="lc">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Reference article" /> 
+									</f:facet>
+									<h:outputText value="#{lc.article.referenceArticle}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Modèle" /> 
+									</f:facet>
+									<h:outputText value="#{lc.article.modele}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Quantité" /> 
+									</f:facet>
+									<h:outputText value="#{lc.quantite}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Description courte" /> 
+									</f:facet>
+									<h:outputText value="#{lc.article.descriptionCourte}" />
+								</h:column>
+							</h:dataTable>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<b>Mode de livraisons</b>
+						</div>
+						<div class="col-lg-9" style="border: 1px solid black; padding: 5px;">
+							<div class="row">
+								<div class="col-lg-4">
+									<h:outputText value="#{commandeBean.commande.modeLivraison.label} " />
+									<h:outputText value="#{commandeBean.commande.relai.numeroRelai}"/>
+								</div>
+								<div class="col-lg-8">
+									<h:form rendered="#{commandeBean.commande.relai != null}">
+										<pre>
+											<h:outputText value="#{commandeBean.commande.relai.label} " /><br />
+											<h:outputText value="#{commandeBean.commande.relai.adresse.numeroRue}" /><br />
+											<h:outputText value="#{commandeBean.commande.relai.adresse.complement}" /><br />
+											<h:outputText value="#{commandeBean.commande.relai.adresse.codePostal} " /><h:outputText value="#{commandeBean.commande.relai.adresse.ville}" />
+										</pre>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<b>Contre remboursement?</b>
+						</div>
+						<div class="col-lg-9">
+							<div class="row">
+								<div class="col-lg-2" style="border: 1px solid black; padding: 5px;">
+									<h:outputText value="Oui" rendered="#{commandeBean.commande.contreRemboursement}" />
+									<h:outputText value="Non" rendered="#{!commandeBean.commande.contreRemboursement}" />
+								</div>
+								<div class="col-lg-5 text-right">
+									<b>Prix total :</b>
+								</div>
+								<div class="col-lg-5" style="border: 1px solid black; padding: 5px;">
+									<h:outputText value="#{commandeBean.commande.prixTotal}€ TTC" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-12">
+					<h:commandLink action="#{commandeBean.envoieCommande}" styleClass="btn btn-primary">
+						<h:outputText value="Envoyer" />
+					</h:commandLink>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

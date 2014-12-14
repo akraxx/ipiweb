@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+	<managed-bean>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>userBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.UserBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>articleBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.ArticleBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>navigationBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.NavigationBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>modeLivraisonBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.ModeLivraisonBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>relaiBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.RelaiBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>codePromoBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.CodePromoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>paiementBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.PaiementBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>commandeBean</managed-bean-name>
+		<managed-bean-class>fr.flst.mmargr.bean.CommandeBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>welcome</display-name>
+		<from-view-id>/secured/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listUser</from-outcome>
+			<to-view-id>/secured/user/list.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listArticle</from-outcome>
+			<to-view-id>/secured/article/listArticle.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listLivraison</from-outcome>
+			<to-view-id>/secured/livraison/listLivraison.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>addUser</display-name>
+		<from-view-id>/secured/user/add.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listUser</from-outcome>
+			<to-view-id>/secured/user/list.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>listUser</display-name>
+		<from-view-id>/secured/user/list.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addUser</from-outcome>
+			<to-view-id>/secured/user/add.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editUser</from-outcome>
+			<to-view-id>/secured/user/editUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editUser</display-name>
+		<from-view-id>/secured/user/editUser.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listUser</from-outcome>
+			<to-view-id>/secured/user/list.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>addArticle</display-name>
+		<from-view-id>/secured/article/addArticle.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listArticle</from-outcome>
+			<to-view-id>/secured/article/listArticle.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>listArticle</display-name>
+		<from-view-id>/secured/article/listArticle.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addArticle</from-outcome>
+			<to-view-id>/secured/article/addArticle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editArticle</from-outcome>
+			<to-view-id>/secured/article/editArticle.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editArticle</display-name>
+		<from-view-id>/secured/article/editArticle.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listArticle</from-outcome>
+			<to-view-id>/secured/article/listArticle.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>addRelai</display-name>
+		<from-view-id>/secured/relai/addRelai.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listRelai</from-outcome>
+			<to-view-id>/secured/relai/listRelai.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>listRelai</display-name>
+		<from-view-id>/secured/relai/listRelai.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addRelai</from-outcome>
+			<to-view-id>/secured/relai/addRelai.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editRelai</from-outcome>
+			<to-view-id>/secured/relai/editRelai.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editRelai</display-name>
+		<from-view-id>/secured/relai/editRelai.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listRelai</from-outcome>
+			<to-view-id>/secured/relai/listRelai.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>addCodePromo</display-name>
+		<from-view-id>/secured/promo/addCodePromo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listCodePromo</from-outcome>
+			<to-view-id>/secured/promo/listCodePromo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>listCodePromo</display-name>
+		<from-view-id>/secured/promo/listRelai.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addRelai</from-outcome>
+			<to-view-id>/secured/promo/addCodePromo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editCodePromo</from-outcome>
+			<to-view-id>/secured/promo/editCodePromo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editCodePromo</display-name>
+		<from-view-id>/secured/promo/editCodePromo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listCodePromo</from-outcome>
+			<to-view-id>/secured/promo/listCodePromo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

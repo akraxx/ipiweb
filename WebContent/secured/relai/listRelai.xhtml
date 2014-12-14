@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+	<ui:define name="title">Administration - Gestion des relais</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row page-header">
+				<div class="col-lg-8 text-left">
+					<h4>Liste des relais</h4>
+				</div>
+				<div class="col-lg-3 text-right">
+					<h:selectOneMenu id="search-filter" styleClass="form-control" value="#{relaiBean.selectedFilter}" >
+					    <f:selectItems value="#{relaiBean.filters}"  var="f"
+	                    	itemLabel="#{f.label}" itemValue="#{f.value}" />
+					</h:selectOneMenu>
+		        </div>
+		        <div class="col-lg-1 text-left">
+		        		<h:commandLink
+							action="#{relaiBean.sortRelais}" style="padding-left:5px;"><span class="glyphicon glyphicon-ok"> </span> </h:commandLink>
+				</div>
+			</div>
+		</h:form>
+		<div class="row">
+			<div class="col-lg-12">
+				<f:view>
+					<h:form>
+						<h:dataTable styleClass="table table-hover"
+							value="#{relaiBean.relaisModel}" var="r">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Numéro du relai" /> 
+								</f:facet>
+								<h:outputText value="#{r.numeroRelai}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Nom du relai" />
+								</f:facet>
+								<h:outputText value="#{r.label}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Ville" />
+								</f:facet>
+								<h:outputText value="#{r.adresse.ville}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Opérations" />
+								</f:facet>
+								<h:commandLink
+									action="#{relaiBean.deleteRelai}" style="padding-left:5px;"><span class="glyphicon glyphicon-trash"> </span> </h:commandLink>
+								<h:commandLink
+									action="#{relaiBean.editRelai}" style="padding-left:5px;"><span class="glyphicon glyphicon-edit"> </span> </h:commandLink>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</f:view>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<h:form>
+					<h:commandLink action="#{navigationBean.toAddRelai}" styleClass="btn btn-primary">
+						<h:outputText value="Nouveau relai" />
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -41,3 +41,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+/.idea
+/.metadata
+/.settings
+/target
+/.project
+/ipiweb.iml
+/.classpath
+/build
